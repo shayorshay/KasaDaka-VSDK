@@ -182,6 +182,13 @@ class SpokenUserInputAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
+class TextMessageAdmin(admin.ModelAdmin):
+    list_display = ('caller_id', 'sms_date','sms_body')
+    fieldsets = [(_('General'), {'fields' : ['caller_id', 'sms_date','sms_body']})]
+
+class TransactionAdmin(admin.ModelAdmin):
+   list_display = ('customer_name', 'id', 'date', 'amount', 'reference', 'transaction_type')
+   fieldsets = [(_('General'), {'fields' : ['customer_name', 'id', 'date', 'amount', 'refer
 
 
 # Register your models here.
@@ -196,3 +203,5 @@ admin.site.register(VoiceLabel, VoiceLabelAdmin)
 admin.site.register(SpokenUserInput, SpokenUserInputAdmin)
 admin.site.register(UserInputCategory)
 admin.site.register(Record)
+admin.site.register(TextMessage, TextMessageAdmin)
+admin.site.register(Transaction, TransactionAdmin)
