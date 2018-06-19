@@ -1,2 +1,1 @@
-# KasaDaka-Voice Service Development Kit
-# including scripts for mobile payment prototype
+# KasaDaka-Voice Service Development Kit including mobile payment prototype
