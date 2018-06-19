@@ -1,3 +1,4 @@
+#this script parses and posts SMS messages to the Django models: TextMessage and Transaction
 import os
 import sys
 import re
@@ -11,6 +12,7 @@ def post_sms(caller_id, message_body, message_date):
 	textmessage.sms_date = message_date
 	textmessage.save()
 
+#parsing is done on a particular format of SMS 
 def parse_outgoing_transaction(sms, message_date):
         transaction = Transaction()
         id_pattern = 'Transaction ID: ([0-9]+)'
@@ -42,6 +44,7 @@ def parse_outgoing_transaction(sms, message_date):
 
         transaction.save()
 
+#parsing is done on a particular format of SMS 
 def parse_incoming_transaction(sms):
         transaction = Transaction()
         print(sms)
@@ -102,7 +105,7 @@ def get_data():
         message_body = ' '.join(sys.argv[2:])
         message_date = datetime.datetime.now()
         post_sms(caller_id, message_body, message_date)
-        #check if SMS is a transaction
+        #check if SMS is a transaction first -- verify the caller ID belongs to the telecommunication company
         post_transaction(message_body, message_date)
        
 if __name__ == '__main__':
